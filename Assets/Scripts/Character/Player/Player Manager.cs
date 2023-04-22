@@ -19,6 +19,9 @@ namespace OMG
         {
             base.Update();
 
+            if (!IsOwner)
+                return;
+
             playerLocomotionManager.HandleAllMovement();
         }
     }

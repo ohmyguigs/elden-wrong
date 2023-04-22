@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterLocomotionManager : MonoBehaviour
+namespace OMG
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CharacterLocomotionManager : MonoBehaviour
     {
-        
-    }
+        protected virtual void Awake()
+        {
+            // DontDestroyOnLoad(this);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        protected virtual void Update()
+        {
+            // shared character updates
+        }
     }
 }
