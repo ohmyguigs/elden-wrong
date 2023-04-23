@@ -8,10 +8,17 @@ namespace OMG
     {
         public static PlayerInputManager instance;
         PlayerControls controls;
+
+        [Header("Movement Input")]
         [SerializeField] Vector2 movementInput;
         public float verticalInput;
         public float horizontalInput;
         public float moveAmount;
+
+        [Header("Camera Movement Input")]
+        [SerializeField] Vector2 cameraInput;
+        public float cameraVerticalInput;
+        public float cameraHorizontalInput;
 
         private void Awake()
         {
@@ -54,7 +61,10 @@ namespace OMG
             {
                 controls = new PlayerControls();
                 controls.PlayerMovement.Movement.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
+                controls.PlayerCamera.Movement.performed += ctx => cameraInput = ctx.ReadValue<Vector2>();
             }
+            // hide cursor and lock it to the center of the screen
+            Cursor.lockState = CursorLockMode.Locked;
             controls.Enable();
         }
 
@@ -84,9 +94,10 @@ namespace OMG
         }
         private void Update()
         {
-            HandleMovementInput();
+            HandlePlayerMovementInput();
+            HandleCameraMovementInput();
         }
-        private void HandleMovementInput()
+        private void HandlePlayerMovementInput()
         {
             verticalInput = movementInput.y;
             horizontalInput = movementInput.x;
@@ -105,6 +116,12 @@ namespace OMG
                 // running
                 moveAmount = 1;
             }
+        }
+
+        private void HandleCameraMovementInput()
+        {
+            cameraVerticalInput = cameraInput.y;
+            cameraHorizontalInput = cameraInput.x;
         }
     }
 }

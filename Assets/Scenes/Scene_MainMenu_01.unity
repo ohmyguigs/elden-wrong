@@ -1528,7 +1528,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816071709}
   m_CullTransparentMesh: 1
---- !u!1001 &3244734641987701411
+--- !u!1001 &1140819956169597452
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1594,7 +1594,7 @@ PrefabInstance:
     - target: {fileID: 2579270079438337626, guid: 4e412dd6897cacf4090256a05d8e400b,
         type: 3}
       propertyPath: m_Name
-      value: Player Camera
+      value: Player Camera (Left & Right)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
