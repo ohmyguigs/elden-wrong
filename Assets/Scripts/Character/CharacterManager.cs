@@ -23,6 +23,7 @@ namespace OMG
             if (IsOwner)
             {
                 characterNetworkManager.networkPosition.Value = transform.position;
+                characterNetworkManager.networkRotation.Value = transform.rotation;
             }
             else
             {
@@ -31,7 +32,17 @@ namespace OMG
                     characterNetworkManager.networkPosition.Value,
                     ref characterNetworkManager.networkPositionVelocity,
                     characterNetworkManager.networkPositionSmoothTime);
+
+                transform.rotation = Quaternion.Slerp
+                    (transform.rotation,
+                    characterNetworkManager.networkRotation.Value,
+                    characterNetworkManager.networkRotationSmoothTime);
             }
+        }
+
+        protected virtual void LateUpdate()
+        {
+            // shared character LateUpdates
         }
     }
 }
