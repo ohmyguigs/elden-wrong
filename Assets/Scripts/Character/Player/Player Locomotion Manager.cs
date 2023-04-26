@@ -7,10 +7,12 @@ namespace OMG
     public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         PlayerManager player;
+
         // Movements vem do PlayerInputManager
         public float verticalMovement;
         public float horizontalMovement;
         public float moveAmount;
+        public Animator playerAnimator;
         private Vector3 moveDirection;
         private Vector3 targetRotationDirection;
         [SerializeField] float walkingSpeed = 2;
@@ -49,12 +51,15 @@ namespace OMG
             moveDirection.Normalize();
             moveDirection.y = 0;
 
-            if (PlayerInputManager.instance.moveAmount > 0.5f)
+            float moveSpeed = PlayerInputManager.instance.moveAmount;
+            playerAnimator.SetFloat("moveSpeed", moveSpeed);
+
+            if (moveSpeed > 0.5f)
             {
                 // Move player at running speed
                 player.characterController.Move(moveDirection * runningSpeed * Time.deltaTime);
             }
-            else if (PlayerInputManager.instance.moveAmount <= 0.5f)
+            else if (moveSpeed <= 0.5f)
             {
                 // Move player at walking speed
                 player.characterController.Move(moveDirection * walkingSpeed * Time.deltaTime);
